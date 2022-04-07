@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<!-- Add a svg area, empty -->
+<svg id="dataviz_area" height=200 width=450></svg>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Try: Change the coordinate of the 3 circles to make sure you understood how it works -->
+<script>
+var svg = d3.select("#dataviz_area")
+svg.append("circle")
+  .attr("cx", 100).attr("cy", 50).attr("r", 40).style("fill", "blue");
+svg.append("circle")
+  .attr("cx", 140).attr("cy", 70).attr("r", 40).style("fill", "red");
+svg.append("circle")
+  .attr("cx", 90).attr("cy", 90).attr("r", 40).style("fill", "green");
+</script>
+<!-- Done. -->
