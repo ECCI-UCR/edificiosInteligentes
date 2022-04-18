@@ -16,10 +16,10 @@ var margin = {top: 10, right: 30, bottom: 30, left: 60},
 // Agregar el objeto SVG al cuerpo de la pagina.
 var svg = d3.select("#my_dataviz")
             .append("svg")
-			.attr("width", width + margin.left + margin.right)
-			.attr("height", height + margin.top + margin.bottom)
-			.append("g")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 			
 // Leer datos de archivo CSV.
 
