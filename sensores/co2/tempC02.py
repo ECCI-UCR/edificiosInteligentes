@@ -9,8 +9,9 @@ from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
 # You can generate an API token from the "API Tokens Tab" in the UI
-token = "3VqxnTbbIwFsZdNcZrC1Dhuze75JrCqNRDIcpjkU047XI1qy21e_Hy-faVVzwuCMFjgCO-2ZuUJ6mf7pR1M2IQ=="
+#token = "3VqxnTbbIwFsZdNcZrC1Dhuze75JrCqNRDIcpjkU047XI1qy21e_Hy-faVVzwuCMFjgCO-2ZuUJ6mf7pR1M2IQ=="
 #token = "87BN5OIsqZtTt6BFSP_2JKlJa_9tcZrsxN3Y5Dxv_557stycFHkjXEtJMIVVnVZT_dghdPUWQWseK4MqW0iRNQ=="
+token = "o0omKdY8zpLUJAnHU1bx5E64POYf8Sl9ZhZGXzeTI5Jyw-s1Fvcm7qhAe07c_hzU1jEItFW7JetkJNgPcB9wNQ=="
 org = "UCR"
 bucket = "sensores"
 
