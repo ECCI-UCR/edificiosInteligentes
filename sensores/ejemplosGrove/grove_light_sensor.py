@@ -38,6 +38,13 @@ THE SOFTWARE.
 
 import time
 import grovepi
+from influxdb_client import InfluxDBClient, Point, WritePrecision
+from influxdb_client.client.write_api import SYNCHRONOUS
+
+# You can generate an API token from the "API Tokens Tab" in the UI
+token = "o0omKdY8zpLUJAnHU1bx5E64POYf8Sl9ZhZGXzeTI5Jyw-s1Fvcm7qhAe07c_hzU1jEItFW7JetkJNgPcB9wNQ=="
+org = "UCR"
+bucket = "sensores"
 
 # Connect the Grove Light Sensor to analog port A0
 # SIG,NC,VCC,GND
@@ -52,24 +59,22 @@ threshold = 10
 
 grovepi.pinMode(light_sensor,"INPUT")
 grovepi.pinMode(led,"OUTPUT")
-
-while True:
-    try:
+with InfluxDBClient(url="http://192.168.1.102:8086", token=token, org=org) as client:
+    write_api = client.write_api(write_options=SYNCHRONOUS)
+    while True:
+       try:
         # Get sensor value
-        sensor_value = grovepi.analogRead(light_sensor)
+          sensor_value = grovepi.analogRead(light_sensor)
 
         # Calculate resistance of sensor in K
-        resistance = (float)(1023 - sensor_value) * 10 / sensor_value
+          resistance = (float)(1023 - sensor_value) * 10 / sensor_value
 
-        if resistance > threshold:
-            # Send HIGH to switch on LED
-            grovepi.digitalWrite(led,1)
-        else:
-            # Send LOW to switch off LED
-            grovepi.digitalWrite(led,0)
+          data = "air,host=Lab4-19 resistance="
+          data += str(resistance)
+          write_api.write(bucket, org, data) 
+          print(data)
+          #print("sensor_value = %d resistance = %.2f" %(sensor_value,  resistance))
+          time.sleep(60)
 
-        print("sensor_value = %d resistance = %.2f" %(sensor_value,  resistance))
-        time.sleep(.5)
-
-    except IOError:
-        print ("Error")
+       except IOError:
+          print ("Error")
